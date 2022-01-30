@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { AppBar, Toolbar, CssBaseline, Typography } from "@mui/material";
 import classes from "./MainNavigation.module.css";
 import { createTheme } from "@mui/material";
-import { purple, green, cyan } from "@mui/material/colors";
+import { green, cyan } from "@mui/material/colors";
 import { ThemeProvider } from "@mui/material";
 
 const theme = createTheme({

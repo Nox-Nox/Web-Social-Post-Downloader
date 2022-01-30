@@ -1,5 +1,6 @@
 import { saveAs } from "file-saver";
 import FormTemplate from "../components/Form";
+import { Buffer } from "buffer";
 
 function InstagramPage() {
   function sendUrl(urlData) {
@@ -12,9 +13,18 @@ function InstagramPage() {
     })
       .then((response) => response.json())
       .then((jsonData) => {
+        console.log(jsonData);
         for (var i = 0; i < jsonData.length; i++) {
-          saveAs(jsonData[i]["url"], jsonData[i]["title"]);
-          console.log(jsonData[i]["url"]);
+          console.log(jsonData[i]["bytes"]);
+          let blob = new Blob([jsonData[i]["bytes"]], {
+            type: jsonData[i]["type"],
+          });
+          console.log(blob);
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = url;
+          link.download = jsonData[i]["title"];
+          link.click();
         }
       });
   }

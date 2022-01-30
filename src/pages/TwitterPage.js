@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { saveAs } from "file-saver";
 
 function TwitterPage() {
-  const history = useNavigate();
-
   function sendUrl(urlData) {
     fetch("http://localhost:5000/download_twitter", {
       method: "POST",
