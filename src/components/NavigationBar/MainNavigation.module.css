@@ -1,0 +1,20 @@
+.test {
+  font-size: 20px;
+  margin: 30px;
+  display: flex;
+}
+.test a {
+  text-decoration: none;
+  margin-left: 50px;
+  border-radius: 5px;
+  color: blue;
+}
+.test a:hover {
+  background-color: aliceblue;
+}
+
+.test ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
