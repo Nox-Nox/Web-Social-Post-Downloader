@@ -52,8 +52,8 @@ def download_instagram():
         if videos:
             for c in videos:
                 q = requests.get(c)
-                print(q.content)
-                raw = q.content.decode("iso-8859-1")
+                raw = q.content.decode("iso-8859-15")
+                print(raw)
                 base64_data = base64.b64decode(raw)
 
                 data.append({'bytes': base64_data, 'title': "video.mp4", 'type': "video/mp4"})
@@ -61,7 +61,7 @@ def download_instagram():
         if pics:
             for f in pics:
                 r = requests.get(f)
-                raw = r.content.decode("iso-8859-1")
+                raw = r.content.decode("iso-8859-15")
                 base64_data = base64.b64decode(raw)
 
                 data.append({'bytes': base64_data, 'title': "image.jpg", 'type': "image/jpeg", 'type': "image/jpeg"})
@@ -70,6 +70,7 @@ def download_instagram():
             #     print(t)
             # data.append({'url': f, 'title': "pic.jpg"})
     # return jsonify(data)
+    print(data)
     return json.dumps(data)
 
 
