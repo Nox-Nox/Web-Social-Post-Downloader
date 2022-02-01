@@ -15,10 +15,6 @@ function InstagramPage() {
       .then((jsonData) => {
         console.log(jsonData);
         for (var i = 0; i < jsonData.length; i++) {
-          //console.log(jsonData[i]["bytes"]);
-          /* let blob = new Blob([jsonData[i]["bytes"]], {
-            type: jsonData[i]["type"],
-          });*/
           const url = `data:${jsonData[i]["type"]};base64,${jsonData[i]["bytes"]}`;
           const link = document.createElement("a");
           link.href = url;
