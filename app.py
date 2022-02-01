@@ -52,19 +52,16 @@ def download_instagram():
         if videos:
             for c in videos:
                 q = requests.get(c)
-                raw = q.content.decode("iso-8859-15")
-                print(raw)
-                base64_data = base64.b64decode(raw)
-
-                data.append({'bytes': base64_data, 'title': "video.mp4", 'type': "video/mp4"})
+                base64_data = base64.b64encode(q.content)
+                base64_data_string = base64_data.decode("utf-8")
+                data.append({'bytes': base64_data_string, 'title': "video.mp4", 'type': "video/mp4"})
                 # data.append({'url': c, 'title': "video.mp4"})
         if pics:
             for f in pics:
                 r = requests.get(f)
-                raw = r.content.decode("iso-8859-15")
-                base64_data = base64.b64decode(raw)
-
-                data.append({'bytes': base64_data, 'title': "image.jpg", 'type': "image/jpeg", 'type': "image/jpeg"})
+                base64_data = base64.b64encode(r.content)
+                base64_data_string = base64_data.decode("utf-8")
+                data.append({'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg", 'type': "image/jpeg"})
 
             # for t in data:
             #     print(t)
