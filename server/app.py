@@ -1,10 +1,10 @@
+import base64
 import json
-from flask_cors import CORS, cross_origin
-from flask import Flask, render_template, request, Response
-import youtube_dl
 import instaloader
 import requests
-import base64
+import youtube_dl
+from flask import Flask, request, Response
+from flask_cors import cross_origin
 from instaloader import Post
 
 app = Flask(__name__)
@@ -27,21 +27,15 @@ def login_to_instagram():
     print("Logged in")
     return instance
 
-@app.route('/')
-def home():
-    return render_template('home.html')
-
 
 @app.route('/download_instagram', methods=['GET', 'POST'])
 @cross_origin()
 def download_instagram():
     if request.method == 'POST':
         instance = login_to_instagram()
-
         original_url = request.get_json()
         to_format_url = original_url['url']
         short_code = to_format_url.split('p/')[1].split('/')[0]
-
         post = Post.from_shortcode(instance.context, short_code)
         videos = []
         pics = []
@@ -64,23 +58,17 @@ def download_instagram():
                 base64_data_string = base64_data.decode("utf-8")
                 data.append(
                     {'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg", 'type': "image/jpeg"})
-
-    print(data)
     return json.dumps(data)
 
 
 @app.route('/download_twitter', methods=['GET', 'POST'])
 def download_twitter():
     if request.method == 'POST':
-        urlj = request.get_json()
-        print(urlj)
-        url = urlj['url']
+        original_url = request.get_json()
+        url = original_url['url']
         with youtube_dl.YoutubeDL() as ydl:
             info_url = ydl.extract_info(url, download=False)
-            print(info_url['url'])
-            print(info_url['title'])
             data = {'url': info_url['url'], 'title': info_url['title'] + '.mp4'}
-
     return Response(json.dumps(data), status=200, mimetype='video/mp4')
 
 
