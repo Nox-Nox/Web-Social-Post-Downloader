@@ -1,21 +1,30 @@
-import { Link } from "react-router-dom";
-import { AppBar, Toolbar, CssBaseline, Typography } from "@mui/material";
-import classes from "./MainNavigation.module.css";
+import { AppBar, Toolbar } from "@mui/material";
+import { Link } from "@mui/material";
 import { createTheme } from "@mui/material";
-import { green, cyan } from "@mui/material/colors";
 import { ThemeProvider } from "@mui/material";
+import { useState, useEffect } from "react";
 
 const theme = createTheme({
-  palette: {
-    primary: {
-      main: cyan[700],
+  components: {
+    MuiLink: {
+      styleOverrides: {
+        root: {
+          color: "#d9d9d9",
+          "&:hover": {
+            color: "white",
+          },
+          textDecoration: "none",
+          padding: 20,
+          fontSize: 25,
+        },
+      },
     },
-    secondary: {
-      main: green[500],
-    },
-    pale: {
-      main: "#FCF4D9",
-      contrastText: "#383838",
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          background: "linear-gradient(90deg, #F56040, #405DE6)",
+        },
+      },
     },
   },
 });
@@ -24,14 +33,9 @@ function MainNavigation() {
   return (
     <ThemeProvider theme={theme}>
       <AppBar position="static">
-        <CssBaseline />
         <Toolbar>
-          <Typography variant="h4">Navbar</Typography>
-          <div className={classes.test}>
-            <Link to="/anyPage">Any Page</Link>
-            <Link to="/twitterPage">Twitter Page</Link>
-            <Link to="/instagramPage">Instagram Page</Link>
-          </div>
+          <Link href="/twitterPage">Twitter Page</Link>
+          <Link href="/instagramPage">Instagram Page</Link>
         </Toolbar>
       </AppBar>
     </ThemeProvider>

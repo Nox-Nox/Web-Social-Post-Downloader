@@ -1,6 +1,4 @@
-import { saveAs } from "file-saver";
-import FormTemplate from "../components/Form";
-import { Buffer } from "buffer";
+import FormTemplate from "../components/Form/Form";
 
 function InstagramPage() {
   function sendUrl(urlData) {
