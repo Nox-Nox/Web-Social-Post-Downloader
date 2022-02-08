@@ -1,4 +1,5 @@
 import FormTemplate from "../components/Form/Form";
+import { Box } from "@mui/material";
 
 function InstagramPage() {
   function sendUrl(urlData) {
@@ -23,7 +24,9 @@ function InstagramPage() {
   }
   return (
     <div>
-      <div>Instagram Page</div>
+      <Box textAlign={"center"} sx={{ marginBottom: "4rem" }}>
+        <img src={require("../Images/instagram.png")} alt=" " width="100px" />
+      </Box>
       <FormTemplate onSendUrl={sendUrl} />
     </div>
   );

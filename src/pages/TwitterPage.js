@@ -1,5 +1,5 @@
 import FormTemplate from "../components/Form/Form";
-
+import { Box } from "@mui/material";
 import { saveAs } from "file-saver";
 
 function TwitterPage() {
@@ -20,7 +20,9 @@ function TwitterPage() {
 
   return (
     <div>
-      <div>Twitter Page</div>
+      <Box textAlign={"center"} sx={{ marginBottom: "4rem" }}>
+        <img src={require("../Images/twitter.png")} alt=" " width="100px" />
+      </Box>
       <FormTemplate onSendUrl={sendUrl} />
     </div>
   );
