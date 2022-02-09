@@ -10,7 +10,7 @@ function MainNavigation() {
   const [isTheme, setTheme] = useState(twitterTheme);
 
   useEffect(() => {
-    const currentTheme = localStorage.getItem("theme-color");
+    const currentTheme = sessionStorage.getItem("theme-color");
     if (currentTheme) {
       setTheme(currentTheme);
     }
@@ -18,7 +18,7 @@ function MainNavigation() {
 
   const handleClick = (theme) => {
     setTheme(theme);
-    localStorage.setItem("theme-color", theme);
+    sessionStorage.setItem("theme-color", theme);
   };
 
   return (
