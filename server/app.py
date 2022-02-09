@@ -73,21 +73,6 @@ def download_twitter():
     return Response(json.dumps(data), status=200, mimetype='video/mp4')
 
 
-@app.route('/download_any_page', methods=['GET', 'POST'])
-def download_any_page():
-    if request.method == 'POST':
-        original_url = request.get_json()
-        url_to_request = original_url['url']
-        with youtube_dl.YoutubeDL() as ydl:
-            info_url = ydl.extract_info(url_to_request, download=False)
-            url = info_url["url"]
-            print(info_url)
-            info_media = requests.get(url)
-            video_base64 = base64.b64encode(info_media.content)
-            base64_data_string = video_base64.decode("utf-8")
-            data = {'bytes': base64_data_string, 'title': info_url['title'] + '.mp4', 'type': "video/mp4"}
-    return json.dumps(data)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
