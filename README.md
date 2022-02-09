@@ -68,3 +68,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Reaquired react dependencies can be found in the package.json file
+### Required python libraries are flask_cors, instaloader, youtube_dl, base64, json, requests and flask framework
+
+### Brief description
+It downloads posts from twitter or instagram by giving/pasting the post's link in the input field, sends the link to the flask server where it uses different libraries to extracts required information/data and sends back to the react client where the response is handled by JS
+
+
