@@ -2,32 +2,9 @@ import { useRef, useState } from "react";
 import { Input } from "@mui/material";
 import { createTheme, ThemeProvider, Button } from "@mui/material";
 import { Box } from "@mui/material";
+import FormTheme from "../Themes/FormTheme";
 
-const theme = createTheme({
-  components: {
-    MuiFormGroup: {
-      styleOverrides: {
-        root: {
-          width: "auto",
-        },
-      },
-    },
-    MuiInput: {
-      styleOverrides: {
-        root: {
-          width: "100%",
-        },
-      },
-    },
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          paddingTop: 20,
-        },
-      },
-    },
-  },
-});
+const theme = FormTheme;
 
 function FormTemplate(props) {
   const [isButtonPressed, setButtonPressed] = useState(false);
@@ -39,7 +16,7 @@ function FormTemplate(props) {
       url: enteredUrl,
     };
     props.onSendUrl(urlData);
-    setButtonPressed(true);
+    if (isButtonPressed === false) setButtonPressed(true);
     document.getElementById("input-form").reset();
   }
 

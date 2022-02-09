@@ -58,7 +58,7 @@ def download_instagram():
                 base64_data = base64.b64encode(r.content)
                 base64_data_string = base64_data.decode("utf-8")
                 data.append(
-                    {'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg", 'type': "image/jpeg"})
+                    {'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg"})
     return json.dumps(data)
 
 
