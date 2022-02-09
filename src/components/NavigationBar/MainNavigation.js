@@ -1,6 +1,4 @@
-import { AppBar, Toolbar } from "@mui/material";
-import { Link } from "@mui/material";
-import { ThemeProvider } from "@mui/material";
+import { AppBar, Toolbar, Link, ThemeProvider } from "@mui/material";
 import { useEffect, useState } from "react";
 import MainNavigationTheme from "../Themes/MainNavigationTheme";
 
