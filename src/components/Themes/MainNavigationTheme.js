@@ -1,6 +1,6 @@
 import { createTheme } from "@mui/material";
 
-const TwitterTheme = createTheme({
+const MainNavigationTheme = createTheme({
   components: {
     MuiLink: {
       styleOverrides: {
@@ -15,14 +15,7 @@ const TwitterTheme = createTheme({
         },
       },
     },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          background: "#1DA1F2",
-        },
-      },
-    },
   },
 });
 
-export default TwitterTheme;
+export default MainNavigationTheme;
