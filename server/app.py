@@ -9,7 +9,7 @@ from instaloader import Post
 from flask_cors import CORS
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "DianaWhore99"
+app.config['SECRET_KEY'] = "SecretKey37!"
 CORS(app)
 
 
@@ -24,7 +24,7 @@ def login_to_instagram():
     instance.save_metadata = False
     instance.save_metadata_json = True
     instance.download_comments = False
-    instance.load_session_from_file("nux7510")
+    instance.load_session_from_file("sessionLoginFile")
     print("Logged in")
     return instance
 
@@ -58,7 +58,7 @@ def download_instagram():
                 base64_data = base64.b64encode(r.content)
                 base64_data_string = base64_data.decode("utf-8")
                 data.append(
-                    {'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg", 'type': "image/jpeg"})
+                    {'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg"})
     return json.dumps(data)
 
 
