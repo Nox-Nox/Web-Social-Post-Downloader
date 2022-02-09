@@ -5,7 +5,7 @@ const MainNavigationTheme = createTheme({
     MuiLink: {
       styleOverrides: {
         root: {
-          color: "#d9d9d9",
+          color: "#efefef",
           "&:hover": {
             color: "white",
           },

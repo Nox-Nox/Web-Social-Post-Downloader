@@ -28,13 +28,13 @@ function MainNavigation() {
       <AppBar position="static" style={{ background: isTheme }}>
         <Toolbar>
           <Link href="/twitterPage" onClick={() => handleClick(twitterTheme)}>
-            Twitter Page
+            Twitter
           </Link>
           <Link
             href="/instagramPage"
             onClick={() => handleClick(instagramTheme)}
           >
-            Instagram Page
+            Instagram
           </Link>
         </Toolbar>
       </AppBar>
