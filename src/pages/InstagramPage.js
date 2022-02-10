@@ -1,6 +1,8 @@
 import FormTemplate from "../components/Form/Form";
 import { Box } from "@mui/material";
 
+import { useEffect } from "react";
+
 function InstagramPage() {
   function sendUrl(urlData) {
     fetch("http://localhost:5000/download_instagram", {
