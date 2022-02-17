@@ -1,9 +1,13 @@
 import FormTemplate from "../components/Form/Form";
 import { Box } from "@mui/material";
 import { saveAs } from "file-saver";
+import { useEffect, useState } from "react";
 
 function TwitterPage() {
+  const [isDownlaoded, setDownloaded] = useState(true);
+
   function sendUrl(urlData) {
+    setDownloaded(false);
     fetch("http://localhost:5000/download_twitter", {
       method: "POST",
       body: JSON.stringify(urlData),
@@ -15,7 +19,16 @@ function TwitterPage() {
       .then((jsonData) => {
         console.log(jsonData);
         saveAs(jsonData["url"], jsonData["title"]);
+        setDownloaded(true);
       });
+  }
+
+  if (isDownlaoded === false) {
+    return (
+      <section>
+        <p>Loading.....</p>
+      </section>
+    );
   }
 
   return (

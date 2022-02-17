@@ -66,11 +66,16 @@ def download_instagram():
 def download_twitter():
     if request.method == 'POST':
         original_url = request.get_json()
+        print(original_url)
         url = original_url['url']
+        print(url)
         with youtube_dl.YoutubeDL() as ydl:
             info_media = ydl.extract_info(url, download=False)
             data = {'url': info_media['url'], 'title': info_media['title'] + '.mp4'}
     return Response(json.dumps(data), status=200, mimetype='video/mp4')
+
+
+
 
 
 if __name__ == '__main__':
