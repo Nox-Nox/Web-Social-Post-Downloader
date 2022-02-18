@@ -4,7 +4,6 @@ import instaloader
 import requests
 import youtube_dl
 from flask import Flask, request, Response
-from flask_cors import cross_origin
 from instaloader import Post
 from flask_cors import CORS
 
@@ -39,7 +38,6 @@ def base64_encode_decode(content, data, type):
 
 
 @app.route('/download_instagram', methods=['GET', 'POST'])
-@cross_origin()
 def download_instagram():
     if request.method == 'POST':
         instance = login_to_instagram()
