@@ -2,6 +2,7 @@ import FormTemplate from "../components/Form/Form";
 import { Box } from "@mui/material";
 import { saveAs } from "file-saver";
 import { useState } from "react";
+import TwitterSpinner from "../components/Spinner/TwitterSpinner";
 
 function TwitterPage() {
   const [isDownlaoded, setDownloaded] = useState(true);
@@ -26,7 +27,7 @@ function TwitterPage() {
   if (isDownlaoded === false) {
     return (
       <section>
-        <p>Loading.....</p>
+        <TwitterSpinner />
       </section>
     );
   }

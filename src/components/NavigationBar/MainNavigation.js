@@ -16,7 +16,7 @@ function MainNavigation() {
     if (currentTheme) {
       setTheme(currentTheme);
     }
-  });
+  }, []);
 
   const handleClick = (theme) => {
     setTheme(theme);
