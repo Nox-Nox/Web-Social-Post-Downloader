@@ -7,6 +7,7 @@ const instagramTheme = {
   background: "linear-gradient(90deg, #F56040, #405DE6)",
 };
 const twitterTheme = { background: "#1DA1F2" };
+const youtubeTheme = { background: "#FF0000" };
 
 function MainNavigation() {
   const [isTheme, setTheme] = useState(twitterTheme.background);
@@ -38,6 +39,12 @@ function MainNavigation() {
             onClick={() => handleClick(instagramTheme.background)}
           >
             Instagram
+          </Link>
+          <Link
+            href="/YoutubePage"
+            onClick={() => handleClick(youtubeTheme.background)}
+          >
+            Youtube
           </Link>
         </Toolbar>
       </AppBar>

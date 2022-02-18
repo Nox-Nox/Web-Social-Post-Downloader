@@ -15,6 +15,13 @@ const MainNavigationTheme = createTheme({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          height: 70,
+        },
+      },
+    },
   },
 });
 
