@@ -1,7 +1,7 @@
 import FormTemplate from "../components/Form/Form";
 import { Box } from "@mui/material";
 import { saveAs } from "file-saver";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function TwitterPage() {
   const [isDownlaoded, setDownloaded] = useState(true);

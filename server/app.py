@@ -24,9 +24,18 @@ def login_to_instagram():
     instance.save_metadata = False
     instance.save_metadata_json = True
     instance.download_comments = False
-    instance.load_session_from_file("sessionLoginFile")
+    instance.load_session_from_file("nux7510")
     print("Logged in")
     return instance
+
+
+def base64_encode_decode(content, data, type):
+    base64_data = base64.b64encode(content)
+    base64_data_string = base64_data.decode("utf-8")
+    if type == "video/mp4":
+        return data.append({'bytes': base64_data_string, 'title': "video.mp4", 'type': "video/mp4"})
+    else:
+        return data.append({'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg"})
 
 
 @app.route('/download_instagram', methods=['GET', 'POST'])
@@ -41,24 +50,30 @@ def download_instagram():
         videos = []
         pics = []
         data = []
+
         for i in post.get_sidecar_nodes():
+            print(i)
             if i.is_video:
                 videos.append(i.video_url)
             else:
                 pics.append(i.display_url)
-        if videos:
-            for c in videos:
-                r = requests.get(c)
-                base64_data = base64.b64encode(r.content)
-                base64_data_string = base64_data.decode("utf-8")
-                data.append({'bytes': base64_data_string, 'title': "video.mp4", 'type': "video/mp4"})
-        if pics:
-            for f in pics:
-                r = requests.get(f)
-                base64_data = base64.b64encode(r.content)
-                base64_data_string = base64_data.decode("utf-8")
-                data.append(
-                    {'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg"})
+        if videos or pics:
+            if videos:
+                for c in videos:
+                    r = requests.get(c)
+                    base64_encode_decode(r.content, data, "video/mp4")
+            if pics:
+                for f in pics:
+                    r = requests.get(f)
+                    base64_encode_decode(r.content, data, "image/jpeg")
+        else:
+            if post.is_video:
+                r = requests.get(post.video_url)
+                base64_encode_decode(r.content, data, "video/mp4")
+            else:
+                r = requests.get(post.url)
+                base64_encode_decode(r.content, data, "image/jpeg")
+
     return json.dumps(data)
 
 
@@ -73,9 +88,6 @@ def download_twitter():
             info_media = ydl.extract_info(url, download=False)
             data = {'url': info_media['url'], 'title': info_media['title'] + '.mp4'}
     return Response(json.dumps(data), status=200, mimetype='video/mp4')
-
-
-
 
 
 if __name__ == '__main__':

@@ -1,10 +1,13 @@
 import FormTemplate from "../components/Form/Form";
 import { Box } from "@mui/material";
-
-import { useEffect } from "react";
+import { useState } from "react";
+import InstagramSpinner from "../components/Spinner/InstagramSpinner";
 
 function InstagramPage() {
+  const [isDownlaoded, setDownloaded] = useState(true);
+
   function sendUrl(urlData) {
+    setDownloaded(false);
     fetch("http://localhost:5000/download_instagram", {
       method: "POST",
       body: JSON.stringify(urlData),
@@ -21,8 +24,16 @@ function InstagramPage() {
           link.href = url;
           link.download = jsonData[i]["title"];
           link.click();
+          setDownloaded(true);
         }
       });
+  }
+  if (isDownlaoded === false) {
+    return (
+      <section>
+        <InstagramSpinner />
+      </section>
+    );
   }
   return (
     <div>

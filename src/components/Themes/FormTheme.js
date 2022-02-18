@@ -19,7 +19,7 @@ const FormTheme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          paddingTop: 20,
+          padding: 20,
         },
       },
     },
