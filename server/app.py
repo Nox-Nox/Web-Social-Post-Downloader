@@ -84,5 +84,21 @@ def download_twitter():
     return Response(json.dumps(data), status=200, mimetype='video/mp4')
 
 
+@app.route('/download_youtube', methods=['GET', 'POST'])
+def download_youtube():
+    if request.method == 'POST':
+        original_url = request.get_json()
+        url = original_url['url']
+        with youtube_dl.YoutubeDL() as ydl:
+            info_media = ydl.extract_info(url, download=False)
+            formats = info_media['formats']
+            quality = []
+            for c in formats:
+                if c['acodec'] != "none" and c['vcodec'] != "none":
+                    print(c)
+                    quality.append({'quality': c['format_note'], 'url': c['url']})
+    return Response(json.dumps(quality), status=200, mimetype='video/mp4')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
