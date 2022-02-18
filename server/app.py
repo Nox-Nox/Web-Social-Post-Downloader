@@ -28,10 +28,10 @@ def login_to_instagram():
     return instance
 
 
-def base64_encode_decode(content, data, type):
+def base64_encode_decode(content, data, file_type):
     base64_data = base64.b64encode(content)
     base64_data_string = base64_data.decode("utf-8")
-    if type == "video/mp4":
+    if file_type == "video/mp4":
         return data.append({'bytes': base64_data_string, 'title': "video.mp4", 'type': "video/mp4"})
     else:
         return data.append({'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg"})
@@ -50,7 +50,6 @@ def download_instagram():
         data = []
 
         for i in post.get_sidecar_nodes():
-            print(i)
             if i.is_video:
                 videos.append(i.video_url)
             else:
@@ -71,7 +70,6 @@ def download_instagram():
             else:
                 r = requests.get(post.url)
                 base64_encode_decode(r.content, data, "image/jpeg")
-
     return json.dumps(data)
 
 
@@ -79,9 +77,7 @@ def download_instagram():
 def download_twitter():
     if request.method == 'POST':
         original_url = request.get_json()
-        print(original_url)
         url = original_url['url']
-        print(url)
         with youtube_dl.YoutubeDL() as ydl:
             info_media = ydl.extract_info(url, download=False)
             data = {'url': info_media['url'], 'title': info_media['title'] + '.mp4'}
