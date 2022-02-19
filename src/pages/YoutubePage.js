@@ -9,7 +9,7 @@ function YoutubePage() {
 
   function sendUrl(urlData) {
     setDownloaded(false);
-    fetch("http://localhost:5000/download_twitter", {
+    fetch("http://localhost:5000/download_youtube", {
       method: "POST",
       body: JSON.stringify(urlData),
       headers: {
@@ -19,7 +19,8 @@ function YoutubePage() {
       .then((response) => response.json())
       .then((jsonData) => {
         console.log(jsonData);
-        saveAs(jsonData["url"], jsonData["title"]);
+
+        saveAs(jsonData["url"], "video.mp4");
         setDownloaded(true);
       });
   }

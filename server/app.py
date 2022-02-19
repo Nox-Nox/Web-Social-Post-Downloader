@@ -94,10 +94,10 @@ def download_youtube():
             formats = info_media['formats']
             quality = []
             for c in formats:
-                if c['acodec'] != "none" and c['vcodec'] != "none":
+                if c['acodec'] != "none" and c['vcodec'] != "none" and c['format_note'] == '720p':
                     print(c)
-                    quality.append({'quality': c['format_note'], 'url': c['url']})
-    return Response(json.dumps(quality), status=200, mimetype='video/mp4')
+                    video = {'quality': c['format_note'], 'url': c['url']}
+    return Response(json.dumps(video), status=200, mimetype='video/mp4')
 
 
 if __name__ == '__main__':
