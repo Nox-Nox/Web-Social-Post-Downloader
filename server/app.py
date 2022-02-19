@@ -92,11 +92,13 @@ def download_youtube():
         with youtube_dl.YoutubeDL() as ydl:
             info_media = ydl.extract_info(url, download=False)
             formats = info_media['formats']
-            quality = []
+            title = info_media['title']
+            print(title)
+            #quality = []
             for c in formats:
                 if c['acodec'] != "none" and c['vcodec'] != "none" and c['format_note'] == '720p':
                     print(c)
-                    video = {'quality': c['format_note'], 'url': c['url']}
+                    video = {'quality': c['format_note'], 'url': c['url'], 'title': title}
     return Response(json.dumps(video), status=200, mimetype='video/mp4')
 
 

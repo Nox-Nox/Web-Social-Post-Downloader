@@ -20,7 +20,7 @@ function YoutubePage() {
       .then((jsonData) => {
         console.log(jsonData);
 
-        saveAs(jsonData["url"], "video.mp4");
+        saveAs(jsonData["url"], jsonData["title"]);
         setDownloaded(true);
       });
   }
