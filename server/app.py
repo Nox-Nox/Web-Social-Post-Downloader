@@ -32,9 +32,9 @@ def base64_encode_decode(content, data, file_type):
     base64_data = base64.b64encode(content)
     base64_data_string = base64_data.decode("utf-8")
     if file_type == "video/mp4":
-        return data.append({'bytes': base64_data_string, 'title': "video.mp4", 'type': "video/mp4"})
+        return data.append({'bytes': base64_data_string, 'title': "video.mp4", 'type': file_type})
     else:
-        return data.append({'bytes': base64_data_string, 'title': "image.jpg", 'type': "image/jpeg"})
+        return data.append({'bytes': base64_data_string, 'title': "image.jpg", 'type': file_type})
 
 
 @app.route('/download_instagram', methods=['GET', 'POST'])
