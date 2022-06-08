@@ -7,9 +7,13 @@ Objective of this project is to learn and practice:
 - React framework
 - React mui
 - Python Flask
-- learn interaction between front-end and back-end
+- learn and understand the interaction between front-end and back-end
 - navigate between pages
 - learn use states
 
-This simple WebApp will download a social media post(image or video) by pasting the link in the field
+This simple WebApp will download a social media post(image or video) by pasting the link in the field, this link will be sent to the flask app/server and processed using different libraries:
+- requests
+- instaloader
+- youtube_dl
+and send the file to the client to be downloaded.
 
